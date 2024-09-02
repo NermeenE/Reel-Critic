@@ -1,0 +1,564 @@
+{% extends 'base.html' %}
+
+{% block title %}Reel Critic{% endblock %}
+
+{% block content %}
+
+  <section class="hero-section" id="home">
+    <div class="container-fluid p-0 d-flex flex-column align-items-center justify-content-end" style="height: 75vh;">
+      <video autoplay muted loop class="w-100 position-absolute top-0 start-0" style="z-index: 1;">
+        <source src="static/img/hero-vid.mp4" type="video/mp4">
+      </video>
+      <div class="overlay"></div>
+      <div class="container-md text-center mb-4 pb-4 position-relative" style="z-index: 3;">
+        <div class="animation-container">
+          <h1 class="fw-bold mb-3 animate-item">Discover the World of Movies with Reel Critic</h1>
+          <div class="col-lg-6 mx-auto">
+            <p class="lead text-light mb-4 mx-5 d-sm-none d-md-block d-none animate-item">Your gateway to the latest reviews, ratings, and discussions on all things cinema.</p>
+            <div class="hero-btn mt-4 gap-2 justify-content-center animate-item">
+              <a type="button" href="#genre" class="btn explore-btn btn-lg px-4 gap-3  me-1">Explore Now</a>
+              {% if current_user.is_authenticated %}
+              <a href="subscribe-jumbotron" class="btn btn-outline-secondary btn-lg px-4" id="subscribe-btn">Subscribe</a>
+              {% else %}
+              <a href="{{ url_for('signup') }}" class="btn btn-outline-secondary btn-lg px-4">Sign Up</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="genre" class="genre my-5 pb-1 d-sm-none d-md-block">
+    <div class="container">
+        <div class="row row-cols-lg-6 g-2 justify-content-center">
+            <div class="col">
+                <button class="genre-btn btn-outline-secondary btn btn-primary explore-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-fire">
+                        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15"/>
+                    </svg>
+                    Trending
+                </button>
+            </div>
+            <div class="col">
+                <button class="genre-btn btn-outline-secondary btn btn-primary explore-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-camera-reels-fill">
+                        <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                        <path d="M9 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                        <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
+                    </svg>
+                    Action
+                </button>
+            </div>
+            <div class="col">
+                <button class="genre-btn btn-outline-secondary btn btn-primary explore-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-hearts">
+                        <path fill-rule="evenodd" d="M4.931.481c1.627-1.671 5.692 1.254 0 5.015-5.692-3.76-1.626-6.686 0-5.015m6.84 1.794c1.084-1.114 3.795.836 0 3.343-3.795-2.507-1.084-4.457 0-3.343M7.84 7.642c2.71-2.786 9.486 2.09 0 8.358-9.487-6.268-2.71-11.144 0-8.358"/>
+                    </svg>
+                    Romance
+                </button>
+            </div>
+            <div class="col">
+                <button class="genre-btn btn-outline-secondary btn btn-primary explore-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-emoji-astonished-fill">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.884-3.978a2.1 2.1 0 0 1 .53.332.5.5 0 0 0 .708-.708h-.001v-.001a2 2 0 0 0-.237-.197 3 3 0 0 0-.606-.345 3 3 0 0 0-2.168-.077.5.5 0 1 0 .316.948 2 2 0 0 1 1.458.048m-4.774-.048a.5.5 0 0 0 .316-.948 3 3 0 0 0-2.167.077 3.1 3.1 0 0 0-.773.478q-.036.03-.07.064l-.002.001a.5.5 0 1 0 .728.689 2 2 0 0 1 .51-.313 2 2 0 0 1 1.458-.048M7 6.5C7 5.672 6.552 5 6 5s-1 .672-1 1.5S5.448 8 6 8s1-.672 1-1.5m4 0c0-.828-.448-1.5-1-1.5s-1 .672-1 1.5S9.448 8 10 8s1-.672 1-1.5m-5.247 4.746c-.383.478.08 1.06.687.98q1.56-.202 3.12 0c.606.08 1.07-.502.687-.98C9.747 10.623 8.998 10 8 10s-1.747.623-2.247 1.246"/>
+                    </svg>
+                    Horror
+                </button>
+            </div>
+            <div class="col">
+                <button class="genre-btn btn-outline-secondary btn btn-primary explore-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-gitlab">
+                        <path d="m15.734 6.1-.022-.058L13.534.358a.57.57 0 0 0-.563-.356.6.6 0 0 0-.328.122.6.6 0 0 0-.193.294l-1.47 4.499H5.025l-1.47-4.5A.572.572 0 0 0 2.47.358L.289 6.04l-.022.057A4.044 4.044 0 0 0 1.61 10.77l.007.006.02.014 3.318 2.485 1.64 1.242 1 .755a.67.67 0 0 0 .814 0l1-.755 1.64-1.242 3.338-2.5.009-.007a4.05 4.05 0 0 0 1.34-4.668Z"/>
+                    </svg>
+                    Anime
+                </button>
+            </div>
+            <div class="col">
+                <button class="genre-btn btn-outline-secondary btn btn-primary explore-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-emoji-grin-fill">
+                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M6.488 7c-.23-.598-.661-1-1.155-1-.493 0-.924.402-1.155 1A2.8 2.8 0 0 1 4 6c0-1.105.597-2 1.333-2 .737 0 1.334.895 1.334 2 0 .364-.065.706-.179 1m5.334 0c-.23-.598-.662-1-1.155-1-.494 0-.925.402-1.155 1a2.8 2.8 0 0 1-.179-1c0-1.105.597-2 1.334-2C11.403 4 12 4.895 12 6c0 .364-.065.706-.178 1M2.696 8.756a.48.48 0 0 1 .382-.118C4.348 8.786 6.448 9 8 9c1.553 0 3.653-.214 4.922-.362a.48.48 0 0 1 .383.118.3.3 0 0 1 .096.29c-.09.47-.242.921-.445 1.342-.263.035-.576.075-.929.115A37 37 0 0 1 8 10.75c-1.475 0-2.934-.123-4.027-.247-.353-.04-.666-.08-.93-.115A5.5 5.5 0 0 1 2.6 9.045a.3.3 0 0 1 .097-.29ZM8 13.5a5.49 5.49 0 0 1-4.256-2.017l.116.014c1.115.126 2.615.253 4.14.253s3.025-.127 4.14-.253l.117-.014A5.49 5.49 0 0 1 8 13.5"/>
+                    </svg>
+                    Comedy
+                </button>
+            </div>
+        </div>
+    </div>
+  </section>
+
+
+  <!-- MOVIES CAROUSEL-->
+  <section class="fan-fav" id="movies" data-offset="100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <h2 class="pb-2 border-bottom mb-2 text-warning text-opacity-75">⏐Movies</h2>
+                <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel" data-bs-touch="false">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    </div>
+                    <div class="carousel-inner mx-auto">
+                        <div class="carousel-item active">
+                            <div class="row p-4 justify-content-center align-items-center">
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                    <div class="card rounded-5">
+                                        <img src="static/img/movies/hitman.jpeg" class="card-img" alt="Hitman Movie Poster">
+                                        <div class="card-overlay">
+                                            <h5 class="card-title">Hitman</h5>
+                                            <h6 class="card-subtitle text-white-50 px-1">Comedy Thriller (2023) • R • 1h 55m</h6>
+                                            <span class="mb-2 stars">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>6.9
+                                            </span>
+                                            <p class="card-text px-1">A professor as a hit man of sorts for his city police department, descends into dangerous territory when he finds himself attracted to a woman who enlists his services.</p>
+                                            <a href="https://www.youtube.com/watch?v=DXwa8DKIK7g" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                  <div class="card rounded-5">
+                                      <img src="static/img/movies/Challengers.jpeg" class="card-img" alt="Challengers Movie Poster">
+                                      <div class="card-overlay">
+                                          <h5 class="card-title">Challengers</h5>
+                                          <h6 class="card-subtitle text-white-50 px-1">Drama(2024) • R • 2h 11m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                          </svg>7.3</span>
+                                          <p class="card-text px-1">Tashi, a former tennis prodigy turned coach, turned her husband into a champion. But to overcome a losing streak, he needs to face his ex-best friend and Tashi's ex-boyfriend.</p>
+                                          <a href="https://www.youtube.com/watch?v=VobTTbg-te0" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                  <div class="card rounded-5">
+                                      <img src="static/img/movies/if.jpeg" class="card-img" alt="IF Movie Poster">
+                                      <div class="card-overlay">
+                                          <h5 class="card-title">IF</h5>
+                                          <h6 class="card-subtitle text-white-50 px-1">Family/Comedy(2024) • PG • 1h 44m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                          </svg>6.6</span>
+                                          <p class="card-text px-1">A young girl who goes through a difficult experience begins to see everyone's imaginary friends who have been left behind as their real-life friends have grown up.</p>
+                                          <a href="https://www.youtube.com/watch?v=mb2187ZQtBE" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                  <div class="card rounded-5">
+                                      <img src="static/img/movies/hereditary.webp" class="card-img" alt="Hereditary Movie Poster">
+                                      <div class="card-overlay">
+                                          <h5 class="card-title">Hereditary </h5>
+                                          <h6 class="card-subtitle text-white-50 px-1">Horror(2018) • R • 2h 7m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                          </svg>7.3</span>
+                                          <p class="card-text px-1">A grieving family is haunted by tragic and disturbing occurrences.</p>
+                                          <a href="https://www.youtube.com/watch?v=V6wWKNij_1M" target="_blank"  class="btn btn-outline-secondary">Trailer</a>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row p-4 justify-content-center align-items-center">
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                    <div class="card rounded-5">
+                                        <img src="static/img/movies/the godfather.jpg" class="card-img" alt="The GodFather Movie Poster">
+                                        <div class="card-overlay">
+                                            <h5 class="card-title">The GodFather</h5>
+                                            <h6 class="card-subtitle text-white-50 px-1">Crime Drama (1972) • R • 2h 55m</h6>
+                                            <span class="mb-2 stars">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                </svg>9.2
+                                            </span>
+                                            <p class="card-text px-1">The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.</p>
+                                            <a href="https://www.youtube.com/watch?v=UaVTIH8mujA" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                  <div class="card rounded-5">
+                                      <img src="static/img/movies/inception.webp" class="card-img" alt="Inception Movie Poster">
+                                      <div class="card-overlay">
+                                          <h5 class="card-title">Inception</h5>
+                                          <h6 class="card-subtitle text-white-50 px-1">Action(2010) • PG-13 • 2h 28m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                          </svg>8.8</span>
+                                          <p class="card-text px-1">A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.</p>
+                                          <a href="https://www.youtube.com/watch?v=YoHD9XEInc0" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                  <div class="card rounded-5">
+                                      <img src="static/img/movies/insideout.webp" class="card-img" alt="Inside Out Movie Poster">
+                                      <div class="card-overlay">
+                                          <h5 class="card-title">Inside Out</h5>
+                                          <h6 class="card-subtitle text-white-50 px-1">Animation/Comdey(2015) • PG • 1h 35m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                          </svg>8.1</span>
+                                          <p class="card-text px-1">After young Riley is uprooted from her Midwest life and moved to San Francisco, her emotions - Joy, Fear, Anger, Disgust and Sadness - conflict on how best to navigate a new city, house, and school.</p>
+                                          <a href="https://www.youtube.com/watch?v=LEjhY15eCx0" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                  <div class="card rounded-5">
+                                      <img src="static/img/movies/darkwaters.webp" class="card-img" alt="Dark Waters Movie Poster">
+                                      <div class="card-overlay">
+                                          <h5 class="card-title">Dark Waters</h5>
+                                          <h6 class="card-subtitle text-white-50 px-1">History/Drama(2019) • PG-13 • 2h 6m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                          </svg>7.6</span>
+                                          <p class="card-text px-1">A corporate defense attorney takes on an environmental lawsuit against a chemical company that exposes a lengthy history of pollution.</p>
+                                          <a href="https://www.youtube.com/watch?v=RvAOuhyunhY" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+
+  <!-- TVSHOWS CAROUSEL-->
+  <section class="fan-fav section z-3" id="tvshows" data-offset="100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <h2 class="pb-2 border-bottom mb-2 text-warning text-opacity-75">⏐TV Shows</h2>
+                <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel" data-bs-touch="false">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    </div>
+                    <div class="carousel-inner mx-auto">
+                        <div class="carousel-item active">
+                            <div class="row p-4 justify-content-center align-items-center">
+                              <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                <div class="card rounded-5 ">
+                                    <img src="static/img/tv-shows/houseofthedrago.webp"
+                                    class="card-img" alt="house of the dragon Poster">
+                                    <div class="card-overlay">
+                                        <h5 class="card-title">House of the Dragon</h5>
+                                        <h6 class="card-subtitle text-white-50 px-1">Comdey Action(2022) • TV-MA • 50m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>8.4</span>
+                                        <p class="card-text px-1">An internal succession war within House Targaryen at the height of its power, 172 years before the birth of Daenerys Targaryen.</p>
+                                        <a href="https://youtu.be/BCDMhWXV_so?si=XCBzB8Kr4djbAUNT" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                <div class="card rounded-5">
+                                    <img src="static/img/tv-shows/suits.webp" class="card-img" alt="Suits Poster">
+                                    <div class="card-overlay">
+                                        <h5 class="card-title">Suits</h5>
+                                        <h6 class="card-subtitle text-white-50 px-1">Drama(2011) • TV-14 • 44m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>8.4</span>
+                                        <p class="card-text px-1">On the run from a drug deal gone bad, brilliant college dropout Mike Ross finds himself working with Harvey Specter, one of New York City's best lawyers.</p>
+                                        <a href="https://youtu.be/bPYnXiOVTvQ?si=1o4C1HAcjYkwaZfj" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                <div class="card rounded-5">
+                                    <img src="static/img/tv-shows/DemonSlayer.webp" class="card-img" alt="Demon Slayer Poster">
+                                    <div class="card-overlay">
+                                        <h5 class="card-title">Demon Slayer</h5>
+                                        <h6 class="card-subtitle text-white-50 px-1">Anime(2019) • TV-MA • 24m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>8.6</span>
+                                        <p class="card-text px-1">A family is attacked by demons and only two members survive - Tanjiro and his sister Nezuko, who is turning into a demon slowly. Tanjiro sets out to become a demon slayer to avenge his family and cure his sister.</p>
+                                        <a href="https://youtu.be/wyiZWYMilgk?si=rIO5FgORd5W4F9cU" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                <div class="card rounded-5">
+                                    <img src="static/img/tv-shows/black-mirror.webp" class="card-img" alt="Black Mirror Poster">
+                                    <div class="card-overlay">
+                                        <h5 class="card-title">Black Mirror </h5>
+                                        <h6 class="card-subtitle text-white-50 px-1">Drama(2011) • TV-MA • 1h</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>8.7</span>
+                                        <p class="card-text px-1">sharp, suspenseful, satirical tales that explore techno-paranoia, "Black Mirror" is a contemporary reworking of "The Twilight Zone" with stories that tap into the collective unease about the modern world.</p>
+                                        <a href="https://youtu.be/5jY1ecibLYo?si=Tmpo9sqv6J4NoACJ" target="_blank"  class="btn btn-outline-secondary">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row p-4 justify-content-center align-items-center">
+                              <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                <div class="card rounded-5">
+                                    <img src="static/img/tv-shows/onepiece.webp" class="card-img" alt="One Piece Poster">
+                                    <div class="card-overlay">
+                                        <h5 class="card-title">One Piece</h5>
+                                        <h6 class="card-subtitle text-white-50 px-1">Anime(1999) • TV-14 • 24m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>9.0</span>
+                                        <p class="card-text px-1">Monkey D. Luffy sets off on an adventure with his pirate crew in hopes of finding the greatest treasure ever, known as the "One Piece".</p>
+                                        <a href="https://youtu.be/MCb13lbVGE0?si=2UaipzYRz9Kvs8t_" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                <div class="card rounded-5">
+                                    <img src="static/img/tv-shows/BetterCallSaul.webp" class="card-img" alt="Better Call Saul Poster">
+                                    <div class="card-overlay">
+                                        <h5 class="card-title">Better Call Saul</h5>
+                                        <h6 class="card-subtitle text-white-50 px-1">Action(2015) • TV-MA • 45m</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>9.0</span>
+                                        <p class="card-text px-1">The trials and tribulations of criminal lawyer Jimmy McGill in the years leading up to his fateful run-in with Walter White and Jesse Pinkman.</p>
+                                        <a href="https://youtu.be/Qz3u06eXf0E?si=0UplkUaWFld9JODP" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                <div class="card rounded-5">
+                                    <img src="static/img/tv-shows/bridgerton.webp" class="card-img" alt="Bridgerton Poster">
+                                    <div class="card-overlay">
+                                        <h5 class="card-title">Bridgerton</h5>
+                                        <h6 class="card-subtitle text-white-50 px-1">Roamnce(2022) • TV-MA • 1h</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>7.4</span>
+                                        <p class="card-text px-1">The eight close-knit siblings of the Bridgerton family look for love and happiness in London high society.</p>
+                                        <a href="https://youtu.be/gBwRga4b1Os?si=EXaWBAzG0aBCA6xU" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+                                <div class="card rounded-5">
+                                    <img src="static/img/tv-shows/power.jpg" class="card-img" alt="Power Book II: Ghost Poster">
+                                    <div class="card-overlay">
+                                        <h5 class="card-title">Power Book II: Ghost</h5>
+                                        <h6 class="card-subtitle text-white-50 px-1">Action(2020) • TV-MA • 1h</h6><span class=" mb-2 stars"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning me-1" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg>7.5</span>
+                                        <p class="card-text px-1">The journey of some of Power's most controversial characters.</p>
+                                        <a href="https://youtu.be/ZUmTlGMt4SI?si=NysyE45nxJgQpnGR" target="_blank" class="btn btn-outline-secondary">Trailer</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+
+
+  <section class="section section-cards mt-4" id="featured" data-offset="100" data-background-color="red">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 text-center mx-auto">
+          <div class="section-description">
+            <h2 class="title text-warning text-opacity-75 fs-2">Featured</h2>
+            <h5 class="description mt-3 px-4">Discover our top picks in the Featured Movies & Shows section, showcasing the best in entertainment from critically acclaimed blockbusters to binge-worthy series. Whether you're a fan of gripping dramas, thrilling action, or heartwarming stories, these curated selections promise to captivate and keep you on the edge of your seat. </h5>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <div class="images-container">
+            <div class="image-container1">
+              <img src="static/img/movies/the godfather.jpg">
+            </div>
+            <div class="image-container2">
+            <img src="static/img/tv-shows/suits.webp">
+            </div>
+            <div class="image-container3">
+              <img src="static/img/movies/hitman.jpeg">
+            </div>
+            <div class="image-container4">
+              <img src="static/img/tv-shows/houseofthedrago.webp">
+            </div>
+            <div class="image-container5">
+              <img src="static/img/tv-shows/DemonSlayer.webp">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="movie-charts" id="charts" data-offset="80">
+    <div class="container px-4 py-5">
+      <div class="row">
+      <div class="col-md-10 mx-auto">
+      <h2 class=" pb-2 display-5 border-bottom"> <img class="pb-2 " src="static/img/logo-icon.png" alt="" width="60" height="70" >Reel Critic Charts: <span class="light text-warning text-opacity-75 ">Top 10 Movies & Shows</span> </h2>
+      <h3 class="mt-4 fs-6 light text-warning text-opacity-50">Rated by Reel Critic Voters</h3>
+      <p class="blog-post-meta mb-5 fst-italic text-secondary fs-7">October 1, 2022 by <a href="#" class="text-warning text-opacity-50">Claudia</a></p>
+      <div class="row g-5">
+      <div class="col-md-9">
+      <hr>
+      <h6 class="card-title pt-2 mt-5">Unbiased Ratings and Reviews at Your Fingertips</h6>
+      <p class="description lh-lg pt-3 pe-5 ">We understand the struggle of finding trustworthy reviews in a sea of opinions.  Our unbiased ratings and reviews for movies and TV shows help you discover the best entertainment. Browse genres, read detailed reviews, and see how your favorite titles compare. Reel Critic makes it simple to find what’s worth watching.</p>
+
+      <h6 class="card-title mt-5">Discover This Week’s Top 10 Must-Watch Titles</h6>
+      <p class="description lh-lg pt-3 pe-5 ">Curious about the hottest movies and shows? Check out our exclusive weekly Top 10 list of the most popular and critically acclaimed titles. Don't miss out on the buzz! Discover the top picks of the week and update your watchlist with the best in entertainment.</p>
+
+      <h6 class="card-title mt-5">Stay in the Know with Reel Critic Insider Access</h6>
+      <p class="description lh-lg pt-3 pe-5">At Reel Critic, we go beyond just ratings. Get insider access to behind-the-scenes insights, exclusive interviews, and trending news from the entertainment world. Whether you're a casual viewer or a film enthusiast, we offer unique perspectives that help you dive deeper into the stories behind your favorite films and shows. Stay informed and connected with everything that's happening in the industry.</p>
+        </div>
+        
+        <div class="recent-posts col-md-3 mx-md-0 mx-auto">
+          <div>
+            <h4 class="fst-italic text-center text-md-start ">Recent posts</h4>
+            <div class="border-bottom mt-2"></div>
+            <ul class="list-unstyled">
+              <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center align-items-md-center py-3 link-body-emphasis text-decoration-none img-responsive border-bottom " href="#">
+                  <img class="bd-placeholder-img rounded" src="static/img/recent-post-1.jpg" width="100%" height="96" alt="">
+                  <div class="col-lg-8 text-center text-md-start">
+                    <h6 class="mb-0 text-warning text-opacity-50">Art of film making</h6>
+                    <small class="fst-italic text-secondary">July 25, 2024</small>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center align-items-md-center py-3 link-body-emphasis text-decoration-none img-responsive border-bottom" href="#">
+                  <img class="bd-placeholder-img rounded" src="static/img/recent-post-2.jpg" width="100%" height="96" alt="">
+                  <div class="col-lg-8 text-center text-md-start">
+                    <h6 class="mb-0 text-warning text-opacity-50">Date Night Snacks</h6>
+                    <small class="fst-italic text-secondary">April 14, 2024</small>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center align-items-md-center py-3 link-body-emphasis text-decoration-none img-responsive border-bottom" href="#">
+                  <img class="bd-placeholder-img rounded" src="static/img/recent-post-3.webp" width="100%" height="96" alt="">
+                  <div class="col-lg-8 text-center text-md-start">
+                    <h6 class="mb-0 text-warning text-opacity-50">All you need to know Theaters </h6>
+                    <small class="fst-italic text-secondary">January 13, 2024</small>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </section>
+
+
+  <section class="jumbotron-bg p-1 w-100" id="subscribe-jumbotron" data-offset="80">
+    <div class="jumbotron-img my-5 position-relative rounded-4 mx-auto">
+        <img src="static/img/jumbotron.jpg" alt="Top Movies" class="img-fluid w-100 rounded">
+        <div class="overlay-top10"></div>
+        <div class="overlay-content text-center text-white">
+            <p class="mb-4 fs-3">Don't miss any updates! <br>Sign up for our Weekly Newsletter</p>
+         
+            <form id="subscribe-form" class="d-flex justify-content-center">
+                <input type="email" class="form-control me-2" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-warning">Subscribe</button>
+            </form>
+            <div id="flash-message" class="d-none fs-6 pt-2"></div>
+        </div>
+    </div>
+</section>
+
+
+  <section class="countdown"  id="charts" data-offset="80">
+    <div class="container px-4 py-5 ">
+    <h2 class="pt-5 lh-base pb-3 display-5 border-bottom text-center">Countdown for the Top 10: <br> <span class="light text-warning text-opacity-75 ">This Week's Must-Watch Movies and Shows</span></h2>
+    <div class="section row g-5 justify-content-center">
+      <div class="col-md-5 text-center">
+          <div class="countdown-movie fs-2 py-3 text-center">Top 10 Movies</div>
+          {% for movie in movies %}
+          <div class="card-wrapper mb-4">
+              <div class="card animate-bottom">
+                  <div class="front" style="background-image: url('{{ movie.img_url }}');">
+                      <p class="large">{{ movie.ranking }}</p>
+                  </div>
+                  <div class="back p-3">
+                    <div class="container">
+                        <div class="title ">{{ movie.title }} <span class="release_date">{{ movie.year }}</span></div>
+                        <div class="rating p-1">
+                            <label>{{ movie.rating }}</label>
+                            <i class="fas fa-star star text-warning text-opacity-75"></i>
+                        </div>
+                        <p class="review fst-italic text-warning text-opacity-75 my-2">"{{ movie.review }}"</p>
+                        <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle mb-3">
+                        <p class="overview">{{ movie.description }}</p>
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('rate_movie', id=movie.id) }}" class="btn explore-btn me-1 ">Update</a>
+                        <a href="{{ url_for('delete_movie', id=movie.id) }}" class="btn btn-primary">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+              </div>
+          </div>
+          {% endfor %}
+          <a href="{{ url_for('add_movie_redirect') }}" class="btn explore-btn d-inline-block mt-4">Add Movie</a>
+      </div>
+
+      <div class="col-md-5 text-center">
+          <div class="countdown-tvshows fs-2 py-3 text-center">Top 10 TV Shows</div>
+          {% for tv_show in tv_shows %}
+          <div class="card-wrapper mb-4">
+              <div class="card animate-bottom">
+                  <div class="front" style="background-image: url('{{ tv_show.img_url }}');">
+                      <p class="large">{{ tv_show.ranking }}</p>
+                  </div>
+                  <div class="back p-3">
+                    <div class="container">
+                      <div class="title">{{ tv_show.title }} <span class="release_date">{{ tv_show.year }}</span></div>
+                      <div class="rating p-1">
+                        <label>{{ tv_show.rating }}</label>
+                        <i class="fas fa-star star text-warning text-opacity-75"></i>
+                      </div>
+                      <p class="review fst-italic text-warning text-opacity-75 my-2">"{{ tv_show.review }}"</p>
+                      <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle mb-3">
+                      <p class="overview">{{ tv_show.description }}</p>
+                      {% if current_user.is_authenticated %}
+                      <a href="{{ url_for('rate_tv_show', id=tv_show.id) }}" class="btn explore-btn me-1">Update</a>
+                      <a href="{{ url_for('delete_tv_show', id=tv_show.id) }}" class="btn btn-primary">Delete</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                  
+              </div>
+          </div>
+          {% endfor %}
+          <a href="{{ url_for('add_tv_show_redirect') }}" class="btn btn-primary d-inline-block mt-4">Add TV Show</a>
+      </div>
+  </div>
+</div>
+    
+</section>
+
+{% endblock %}

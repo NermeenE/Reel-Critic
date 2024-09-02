@@ -1,0 +1,30 @@
+
+__pycache__/
+*.pyc
+*.pyo
+
+venv/
+env/
+.env
+
+instance/*
+!instance/media.db  # Include media.db but exclude everything else in the instance folder
+
+*.log
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+
+.pytest_cache/
+*.coverage
+
+# Local configuration files
+local_settings.py
+
+# Other files to ignore
+*.pkl
+*.zip
+*.tar.gz

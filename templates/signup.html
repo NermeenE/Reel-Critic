@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<body class="signup-page">
+  <section id="signup" class="d-flex align-items-center py-4">
+    <main class="form-signup w-100 mx-auto">
+        <form method="POST" action="{{ url_for('signup') }}">
+            <img class="mb-4" src="{{ url_for('static', filename='img/logo-icon.png') }}" alt="" width="60" height="57">
+            <h3 class="fw-normal">Sign Up</h3>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-floating text-secondary mb-3">
+                    <input type="text" class="form-control" id="floatingFirstName" name="first_name" placeholder="First Name" required>
+                    <label class="text-secondary-emphasis" for="floatingFirstName">First Name</label>
+                </div>
+                <div class="form-floating text-secondary mb-3">
+                    <input type="text" class="form-control" id="floatingLastName" name="last_name" placeholder="Last Name" required>
+                    <label class="text-secondary-emphasis" for="floatingLastName">Last Name</label>
+                </div>
+                <div class="form-floating text-secondary mb-3">
+                  <input type="date" class="form-control" id="floatingBirthday" name="birthday" required>
+                  <label class="text-secondary-emphasis" for="floatingBirthday">Birthday</label>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-12">
+                <div class="form-floating text-secondary mb-3">
+                    <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="name@example.com" required>
+                    <label class="text-secondary-emphasis" for="floatingEmail">Email address</label>
+                </div>
+                <div class="form-floating text-secondary mb-3 position-relative">
+                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+                    <label class="text-secondary-emphasis" for="floatingPassword">Password</label>
+                    <div id="passwordAlert" class="alert alert-danger" style="display: none;"></div>
+                    <i class="fas fa-eye position-absolute" id="togglePassword" 
+                       style="cursor: pointer; right: 10px; bottom: 10px;"></i>
+                </div>
+                <div class="form-floating text-secondary mb-3 position-relative">
+                    <input type="password" class="form-control" id="floatingConfirmPassword" name="confirm_password" placeholder="Confirm Password" required>
+                    <label class="text-secondary-emphasis" for="floatingConfirmPassword">Confirm Password</label>
+                    <div id="confirmPasswordAlert" class="alert alert-danger" style="display: none;"></div>
+                    <i class="fas fa-eye position-absolute" id="toggleConfirmPassword" 
+                       style="cursor: pointer; right: 10px; bottom: 10px;"></i>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-outline-secondary w-50 py-2 mt-3" type="submit">Sign Up</button>
+          </div>
+            <p class="my-3 text-white-50">Already have an account? <a class="sign-in text-light" href="{{ url_for('login') }}">Sign in now</a></p>
+            <p class="mt-4 mb-3 text-light-emphasis">© 2013–2024</p>
+        </form>
+    </main>
+  </section>
+  {% block footer %} {% endblock %}
+</body>
+
+
+{% endblock %}
