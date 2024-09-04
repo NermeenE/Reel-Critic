@@ -2,16 +2,25 @@
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 
 venv/
 env/
 .venv/
+
 .env
 
-instance/*
-!instance/media.db  # Include media.db but exclude everything else in the instance folder
+instance/
+
+*.db
 
 *.log
+
+*.so
+*.o
+*.a
+
+
 
 .DS_Store
 Thumbs.db

@@ -23,8 +23,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_key')
 app.config['MOVIE_DB_API_KEY'] = os.getenv('MOVIE_DB_API_KEY')
 app.config['TV_DB_API_KEY'] = os.getenv('TV_DB_API_KEY')
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///media.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS')
 
 # Initialize extensions
 db = SQLAlchemy(app)
@@ -40,13 +40,14 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-MOVIE_DB_SEARCH_URL = "https://api.themoviedb.org/3/search/movie"
-MOVIE_DB_INFO_URL = "https://api.themoviedb.org/3/movie"
-MOVIE_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
+MOVIE_DB_SEARCH_URL = os.getenv('MOVIE_DB_SEARCH_URL')
+MOVIE_DB_INFO_URL = os.getenv('MOVIE_DB_INFO_URL')
+MOVIE_DB_IMAGE_URL = os.getenv('MOVIE_DB_IMAGE_URL')
 
-TV_DB_SEARCH_URL = "https://api.themoviedb.org/3/search/tv"
-TV_DB_INFO_URL = "https://api.themoviedb.org/3/tv"
-TV_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
+TV_DB_SEARCH_URL = os.getenv('TV_DB_SEARCH_URL')
+TV_DB_INFO_URL = os.getenv('TV_DB_INFO_URL')
+TV_DB_IMAGE_URL = os.getenv('TV_DB_IMAGE_URL')
+
 
 #TABLES
 class User(db.Model, UserMixin):
