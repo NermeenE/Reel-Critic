@@ -6,7 +6,7 @@
 
   <section class="hero-section" id="home">
     <div class="container-fluid p-0 d-flex flex-column align-items-center justify-content-end" style="height: 75vh;">
-      <video autoplay muted loop class="w-100 position-absolute top-0 start-0" style="z-index: 1;">
+      <video autoplay muted loop playsinline class="w-100 position-absolute top-0 start-0" style="z-index: 1;">
         <source src="static/img/hero-vid.mp4" type="video/mp4">
       </video>
       <div class="overlay"></div>
@@ -14,7 +14,7 @@
         <div class="animation-container">
           <h1 class="fw-bold mb-3 animate-item">Discover the World of Movies with Reel Critic</h1>
           <div class="col-lg-6 mx-auto">
-            <p class="lead text-light mb-4 mx-5 d-sm-none d-md-block d-none animate-item">Your gateway to the latest reviews, ratings, and discussions on all things cinema.</p>
+            <p class="lead text-light mb-4 mx-5 d-none d-md-block animate-item">Your gateway to the latest reviews, ratings, and discussions on all things cinema.</p>
             <div class="hero-btn mt-4 gap-2 justify-content-center animate-item">
               <a type="button" href="#genre" class="btn explore-btn btn-lg px-4 gap-3  me-1">Explore Now</a>
               {% if current_user.is_authenticated %}
@@ -95,14 +95,14 @@
         <div class="row">
             <div class="col-md-10 mx-auto">
                 <h2 class="pb-2 border-bottom mb-2 text-warning text-opacity-75">⏐Movies</h2>
-                <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel" data-bs-touch="false">
+                <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel" >
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     </div>
                     <div class="carousel-inner mx-auto">
                         <div class="carousel-item active">
-                            <div class="row p-4 justify-content-center align-items-center">
+                            <div class="row p-3 justify-content-center align-items-center">
                                 <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
                                     <div class="card rounded-5">
                                         <img src="static/img/movies/hitman.jpeg" class="card-img" alt="Hitman Movie Poster">
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <div class="row p-4 justify-content-center align-items-center">
+                            <div class="row p-3 justify-content-center align-items-center">
                                 <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
                                     <div class="card rounded-5">
                                         <img src="static/img/movies/the godfather.jpg" class="card-img" alt="The GodFather Movie Poster">
@@ -241,14 +241,14 @@
         <div class="row">
             <div class="col-md-10 mx-auto">
                 <h2 class="pb-2 border-bottom mb-2 text-warning text-opacity-75">⏐TV Shows</h2>
-                <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel" data-bs-touch="false">
+                <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     </div>
                     <div class="carousel-inner mx-auto">
                         <div class="carousel-item active">
-                            <div class="row p-4 justify-content-center align-items-center">
+                            <div class="row p-3 justify-content-center align-items-center">
                               <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
                                 <div class="card rounded-5 ">
                                     <img src="static/img/tv-shows/houseofthedrago.webp"
@@ -305,7 +305,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <div class="row p-4 justify-content-center align-items-center">
+                            <div class="row p-3 justify-content-center align-items-center">
                               <div class="col-lg-3 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
                                 <div class="card rounded-5">
                                     <img src="static/img/tv-shows/onepiece.webp" class="card-img" alt="One Piece Poster">
@@ -377,10 +377,10 @@
 
 
 
-  <section class="section section-cards mt-4" id="featured" data-offset="100" data-background-color="red">
+  <section class="section section-cards" id="featured" data-offset="100" data-background-color="red">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 text-center mx-auto">
+        <div class="col-md-8 text-center mb-4 mx-auto">
           <div class="section-description">
             <h2 class="title text-warning text-opacity-75 fs-2">Featured</h2>
             <h5 class="description mt-3 px-4">Discover our top picks in the Featured Movies & Shows section, showcasing the best in entertainment from critically acclaimed blockbusters to binge-worthy series. Whether you're a fan of gripping dramas, thrilling action, or heartwarming stories, these curated selections promise to captivate and keep you on the edge of your seat. </h5>
@@ -391,10 +391,10 @@
         <div class="col-md-12 mx-auto">
           <div class="images-container">
             <div class="image-container1">
-              <img src="static/img/movies/the godfather.jpg">
+              <img src="static/img/tv-shows/suits.webp">
             </div>
             <div class="image-container2">
-            <img src="static/img/tv-shows/suits.webp">
+            <img src="static/img/tv-shows/power.jpg">
             </div>
             <div class="image-container3">
               <img src="static/img/movies/hitman.jpeg">
@@ -403,7 +403,7 @@
               <img src="static/img/tv-shows/houseofthedrago.webp">
             </div>
             <div class="image-container5">
-              <img src="static/img/tv-shows/DemonSlayer.webp">
+              <img src="static/img/movies/the godfather.jpg">
             </div>
           </div>
         </div>
@@ -493,7 +493,7 @@
 
 
   <section class="countdown"  id="charts" data-offset="80">
-    <div class="container px-4 py-5 ">
+    <div class="container px-4 py-4 ">
     <h2 class="pt-5 lh-base pb-3 display-5 border-bottom text-center">Countdown for the Top 10: <br> <span class="light text-warning text-opacity-75 ">This Week's Must-Watch Movies and Shows</span></h2>
     <div class="section row g-5 justify-content-center">
       <div class="col-md-5 text-center">
@@ -525,7 +525,7 @@
           {% endfor %}
           <a href="{{ url_for('add_movie_redirect') }}" class="btn explore-btn d-inline-block mt-4">Add Movie</a>
       </div>
-
+      static/img/movies/the godfather.jpg
       <div class="col-md-5 text-center">
           <div class="countdown-tvshows fs-2 py-3 text-center">Top 10 TV Shows</div>
           {% for tv_show in tv_shows %}

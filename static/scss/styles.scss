@@ -65,6 +65,12 @@ button {
   -webkit-font-smoothing: antialiased;
 }
 
+.fa-eye,
+.fa-eye-slash {
+  font-size: 0.8rem;
+  bottom: 3px !important;
+}
+
 .fa-eye-slash:before {
   color: $primary;
 }
@@ -167,7 +173,7 @@ button {
 .form-signin input,
 .form-signin select,
 .form-signin textarea {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-signin label {
@@ -294,14 +300,14 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 5px;
     border-top: solid 1px #dee2e6;
     width: 100%;
 
     .offcanvas-search-container {
       position: relative;
       flex-grow: 1;
-      margin-right: 15px;
+      margin-right: 5px;
 
       .offcanvas-search-input {
         width: 100%;
@@ -396,11 +402,14 @@ button {
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 545px;
+      max-width: 450px;
       padding: 15px;
       background: rgba(0, 0, 0, 0.8);
       border-radius: 10px;
       margin-top: 6rem;
+    }
+    .form-signup {
+      max-width: 550px;
     }
 
     .sign-up,
@@ -535,6 +544,7 @@ button {
   border: none;
   margin: 0 auto;
   display: flex;
+  perspective: 1000px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -790,6 +800,7 @@ button {
     perspective: 1000px;
     position: relative;
     height: 350px;
+    perspective: 1000px;
     background-color: transparent;
     border: none;
 
@@ -837,6 +848,8 @@ button {
       color: $secondary;
       overflow: hidden;
       font-family: 'DM Serif Display', serif;
+      z-index: 2;
+      transform: rotateY(0deg);
 
       &:before {
         position: absolute;
@@ -857,7 +870,7 @@ button {
     .back {
       background: #000;
       transform: rotateY(-180deg);
-
+      z-index: 1;
       .title {
         color: $primary;
         font-size: 1rem;
@@ -935,8 +948,16 @@ p.overview {
 
 // @MEDIA
 @media (max-width: 576px) {
+  .d-sm-none {
+    display: none !important;
+  }
+
   .offcanvas {
     max-width: 60%;
+
+    .offcanvas-title {
+      font-size: 1.1rem !important;
+    }
   }
 
   .carousel-item {
@@ -950,7 +971,10 @@ p.overview {
     }
 
     .card {
-      width: 80%;
+      .card-text {
+        max-height: 100px;
+        overflow-y: auto;
+      }
     }
 
     .col-lg-3,
@@ -978,7 +1002,7 @@ p.overview {
     #signup {
       .form-signin,
       .form-signup {
-        max-width: 400px;
+        max-width: 360px;
       }
     }
   }
@@ -1004,10 +1028,6 @@ p.overview {
   }
 
   .countdown {
-    .row {
-      margin: 0 1rem;
-    }
-
     p.overview {
       font-size: 0.7rem;
       overflow: hidden;
@@ -1065,6 +1085,9 @@ p.overview {
   }
 
   .movie-charts {
+    .container {
+      padding-top: 1rem !important;
+    }
     h2 {
       text-align: center;
     }
@@ -1107,7 +1130,6 @@ p.overview {
   }
 
   .animation-container h1 {
-    color: $secondary;
     padding: 0 2rem;
     line-height: 1.5;
   }
@@ -1188,6 +1210,10 @@ p.overview {
           font-size: 1rem;
         }
       }
+    }
+
+    .countdown-tvshows {
+      padding-top: 3rem !important;
     }
   }
 

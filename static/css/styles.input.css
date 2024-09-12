@@ -11905,6 +11905,12 @@ button {
   -webkit-font-smoothing: antialiased;
 }
 
+.fa-eye,
+.fa-eye-slash {
+  font-size: 0.8rem;
+  bottom: 3px !important;
+}
+
 .fa-eye-slash:before {
   color: #e7442e;
 }
@@ -11997,7 +12003,7 @@ button {
 .form-signin input,
 .form-signin select,
 .form-signin textarea {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-signin label {
@@ -12108,14 +12114,14 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 5px;
   border-top: solid 1px #dee2e6;
   width: 100%;
 }
 .offcanvas .offcanvas-footer .offcanvas-search-container {
   position: relative;
   flex-grow: 1;
-  margin-right: 15px;
+  margin-right: 5px;
 }
 .offcanvas .offcanvas-footer .offcanvas-search-container .offcanvas-search-input {
   width: 100%;
@@ -12231,11 +12237,17 @@ button {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 545px;
+  max-width: 450px;
   padding: 15px;
   background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   margin-top: 6rem;
+}
+.login-page #login .form-signup,
+.login-page #signup .form-signup,
+.signup-page #login .form-signup,
+.signup-page #signup .form-signup {
+  max-width: 550px;
 }
 .login-page #login .sign-up,
 .login-page #login .sign-in,
@@ -12365,6 +12377,7 @@ button {
   border: none;
   margin: 0 auto;
   display: flex;
+  perspective: 1000px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -12595,6 +12608,7 @@ button {
   perspective: 1000px;
   position: relative;
   height: 350px;
+  perspective: 1000px;
   background-color: transparent;
   border: none;
 }
@@ -12633,6 +12647,8 @@ button {
   color: #efefef;
   overflow: hidden;
   font-family: "DM Serif Display", serif;
+  z-index: 2;
+  transform: rotateY(0deg);
 }
 .countdown .card .front:before {
   position: absolute;
@@ -12651,6 +12667,7 @@ button {
 .countdown .card .back {
   background: #000;
   transform: rotateY(-180deg);
+  z-index: 1;
 }
 .countdown .card .back .title {
   color: #e7442e;
@@ -12717,8 +12734,14 @@ p.overview {
   }
 }
 @media (max-width: 576px) {
+  .d-sm-none {
+    display: none !important;
+  }
   .offcanvas {
     max-width: 60%;
+  }
+  .offcanvas .offcanvas-title {
+    font-size: 1.1rem !important;
   }
   .carousel-item .row {
     flex-wrap: wrap;
@@ -12727,8 +12750,9 @@ p.overview {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  .carousel-item .card {
-    width: 80%;
+  .carousel-item .card .card-text {
+    max-height: 100px;
+    overflow-y: auto;
   }
   .carousel-item .col-lg-3,
   .carousel-item .col-md-4,
@@ -12751,7 +12775,7 @@ p.overview {
   .signup-page #login .form-signup,
   .signup-page #signup .form-signin,
   .signup-page #signup .form-signup {
-    max-width: 400px;
+    max-width: 360px;
   }
   .add-page .row {
     margin: 0 3rem;
@@ -12765,9 +12789,6 @@ p.overview {
   #flash-message {
     color: #e7442e;
     font-size: 0.8rem !important;
-  }
-  .countdown .row {
-    margin: 0 1rem;
   }
   .countdown p.overview {
     font-size: 0.7rem;
@@ -12814,6 +12835,9 @@ p.overview {
   .section-cards .image-container3 {
     top: -35px;
   }
+  .movie-charts .container {
+    padding-top: 1rem !important;
+  }
   .movie-charts h2, .movie-charts .h2 {
     text-align: center;
   }
@@ -12847,7 +12871,6 @@ p.overview {
     font-size: 1.2rem;
   }
   .animation-container h1, .animation-container .h1 {
-    color: #efefef;
     padding: 0 2rem;
     line-height: 1.5;
   }
@@ -12909,6 +12932,9 @@ p.overview {
   .countdown .card .back .rating {
     color: #e7442e;
     font-size: 1rem;
+  }
+  .countdown .countdown-tvshows {
+    padding-top: 3rem !important;
   }
   .add-page .add-page-search {
     margin: 0 5rem;
