@@ -661,6 +661,7 @@ button {
     height: 100%;
     margin: 0 auto;
     text-align: center;
+    white-space: nowrap;
     margin-top: 60px;
   }
 
@@ -996,6 +997,12 @@ p.overview {
     }
   }
 
+  .login-page #login .form-signin,
+  .signup-page #signup .form-signup {
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
   .login-page,
   .signup-page {
     #login,
@@ -1026,6 +1033,12 @@ p.overview {
     color: $primary;
     font-size: 0.8rem !important;
   }
+  .jumbotron-bg .jumbotron-img .overlay-content {
+    form .btn {
+      font-size: 0.8rem !important;
+      padding: 0.3rem 0.5rem;
+    }
+  }
 
   .countdown {
     p.overview {
@@ -1034,6 +1047,10 @@ p.overview {
       text-overflow: ellipsis;
       color: $secondary;
       max-height: 100px;
+    }
+
+    .display-5 {
+      font-size: 1.8rem;
     }
   }
 
@@ -1056,31 +1073,35 @@ p.overview {
     .image-container1,
     .image-container5 {
       top: -57px;
+      width: 18%;
 
       &.image-container1 {
-        left: 40px;
+        left: 30px;
       }
 
       &.image-container5 {
-        right: 40px;
+        right: 50px;
       }
     }
 
     .image-container2,
     .image-container4 {
       top: -47px;
+      width: 21%;
 
       &.image-container2 {
-        left: 20px;
+        left: 10px;
       }
 
       &.image-container4 {
-        right: 20px;
+        right: 30px;
       }
     }
 
     .image-container3 {
       top: -35px;
+      width: 24%;
+      right: 10px;
     }
   }
 
@@ -1177,7 +1198,7 @@ p.overview {
 
       .overlay-content {
         p {
-          font-size: 1.2rem !important;
+          font-size: 1.1rem !important;
         }
 
         form {
@@ -1303,5 +1324,9 @@ p.overview {
     .add-page-search {
       margin: 0 16rem;
     }
+  }
+
+  .movie-charts {
+    margin-top: 3rem;
   }
 }

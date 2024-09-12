@@ -12483,6 +12483,7 @@ button {
   height: 100%;
   margin: 0 auto;
   text-align: center;
+  white-space: nowrap;
   margin-top: 60px;
 }
 .section-cards .image-container1,
@@ -12768,6 +12769,11 @@ p.overview {
     margin: 0 3rem;
   }
   .login-page #login .form-signin,
+  .signup-page #signup .form-signup {
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  .login-page #login .form-signin,
   .login-page #login .form-signup,
   .login-page #signup .form-signin,
   .login-page #signup .form-signup,
@@ -12790,12 +12796,19 @@ p.overview {
     color: #e7442e;
     font-size: 0.8rem !important;
   }
+  .jumbotron-bg .jumbotron-img .overlay-content form .btn {
+    font-size: 0.8rem !important;
+    padding: 0.3rem 0.5rem;
+  }
   .countdown p.overview {
     font-size: 0.7rem;
     overflow: hidden;
     text-overflow: ellipsis;
     color: #efefef;
     max-height: 100px;
+  }
+  .countdown .display-5 {
+    font-size: 1.8rem;
   }
   .footer {
     justify-content: space-between;
@@ -12811,29 +12824,33 @@ p.overview {
   .section-cards .image-container1,
   .section-cards .image-container5 {
     top: -57px;
+    width: 18%;
   }
   .section-cards .image-container1.image-container1,
   .section-cards .image-container5.image-container1 {
-    left: 40px;
+    left: 30px;
   }
   .section-cards .image-container1.image-container5,
   .section-cards .image-container5.image-container5 {
-    right: 40px;
+    right: 50px;
   }
   .section-cards .image-container2,
   .section-cards .image-container4 {
     top: -47px;
+    width: 21%;
   }
   .section-cards .image-container2.image-container2,
   .section-cards .image-container4.image-container2 {
-    left: 20px;
+    left: 10px;
   }
   .section-cards .image-container2.image-container4,
   .section-cards .image-container4.image-container4 {
-    right: 20px;
+    right: 30px;
   }
   .section-cards .image-container3 {
     top: -35px;
+    width: 24%;
+    right: 10px;
   }
   .movie-charts .container {
     padding-top: 1rem !important;
@@ -12911,7 +12928,7 @@ p.overview {
     width: 75%;
   }
   .jumbotron-bg .jumbotron-img .overlay-content p {
-    font-size: 1.2rem !important;
+    font-size: 1.1rem !important;
   }
   .jumbotron-bg .jumbotron-img .overlay-content form {
     flex-direction: column;
@@ -12997,6 +13014,9 @@ p.overview {
   }
   .add-page .add-page-search {
     margin: 0 16rem;
+  }
+  .movie-charts {
+    margin-top: 3rem;
   }
 }
 
