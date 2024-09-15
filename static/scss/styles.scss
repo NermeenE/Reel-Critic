@@ -645,6 +645,7 @@ button {
   position: relative;
   padding-bottom: 60px;
   z-index: 1;
+  overflow-x: hidden;
 
   &::before {
     content: '';
@@ -717,6 +718,13 @@ button {
   .image-container3 {
     width: 22%;
     z-index: 3;
+  }
+}
+
+.movie-charts {
+  .logo {
+    max-width: 60px;
+    height: 70px;
   }
 }
 
@@ -1027,6 +1035,15 @@ p.overview {
   .movie-charts {
     .container {
       margin-top: 0;
+
+      h2 {
+        text-align: start;
+
+        .logo {
+          max-width: 45px;
+          max-height: 55px;
+        }
+      }
     }
   }
   #flash-message {
@@ -1115,6 +1132,11 @@ p.overview {
 
     .col-md-9 {
       margin-top: 0;
+
+      .card-title,
+      .description {
+        padding: 0 0.5rem !important;
+      }
     }
 
     hr {

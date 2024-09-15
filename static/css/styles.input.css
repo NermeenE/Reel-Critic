@@ -12468,6 +12468,7 @@ button {
   position: relative;
   padding-bottom: 60px;
   z-index: 1;
+  overflow-x: hidden;
 }
 .section-cards::before {
   content: "";
@@ -12538,6 +12539,11 @@ button {
 .section-cards .image-container3 {
   width: 22%;
   z-index: 3;
+}
+
+.movie-charts .logo {
+  max-width: 60px;
+  height: 70px;
 }
 
 .jumbotron-bg {
@@ -12792,6 +12798,13 @@ p.overview {
   .movie-charts .container {
     margin-top: 0;
   }
+  .movie-charts .container h2, .movie-charts .container .h2 {
+    text-align: start;
+  }
+  .movie-charts .container h2 .logo, .movie-charts .container .h2 .logo {
+    max-width: 45px;
+    max-height: 55px;
+  }
   #flash-message {
     color: #e7442e;
     font-size: 0.8rem !important;
@@ -12860,6 +12873,10 @@ p.overview {
   }
   .movie-charts .col-md-9 {
     margin-top: 0;
+  }
+  .movie-charts .col-md-9 .card-title,
+  .movie-charts .col-md-9 .description {
+    padding: 0 0.5rem !important;
   }
   .movie-charts hr {
     display: none;

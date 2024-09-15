@@ -23,7 +23,7 @@ function updateNav() {
 
 // Smooth scrolling nav link
 function setupNavLinks() {
-  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .offcanvas .nav-link');
 
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -31,6 +31,12 @@ function setupNavLinks() {
       const targetElement = document.querySelector(this.getAttribute('href'));
       const targetOffset = parseInt(targetElement.dataset.offset) || 0;
       const targetPosition = targetElement.offsetTop - targetOffset;
+
+      
+       if (document.querySelector('.offcanvas').classList.contains('show')) {
+        const offcanvas = new bootstrap.Offcanvas(document.querySelector('#offcanvasNavbar'));
+        offcanvas.hide();
+      }
 
       window.scrollTo({
         top: targetPosition,
@@ -200,34 +206,6 @@ function setupPasswordToggle() {
   });
 }
 
-
-// Lazy Loading page performance
-function setupLazyLoading() {
-  let lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(video) {
-        if (video.isIntersecting) {
-          for (let source in video.target.children) {
-            let videoSource = video.target.children[source];
-            if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-              videoSource.src = videoSource.dataset.src;
-            }
-          }
-          video.target.load();
-          video.target.classList.remove("lazy");
-          lazyVideoObserver.unobserve(video.target);
-        }
-      });
-    });
-
-    lazyVideos.forEach(function(lazyVideo) {
-      lazyVideoObserver.observe(lazyVideo);
-    });
-  }
-}
-
 // Countdown cardwrapper animation
 function setupCardWrapperAnimation() {
   const cardWrappers = document.querySelectorAll('.card-wrapper');
@@ -264,7 +242,6 @@ document.addEventListener('DOMContentLoaded', function() {
   setupSearchInput();
   setupSubscriptionForm();
   setupSubscribeButton();
-  setupLazyLoading();
   
   
 });
