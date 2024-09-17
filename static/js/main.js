@@ -32,12 +32,6 @@ function setupNavLinks() {
       const targetOffset = parseInt(targetElement.dataset.offset) || 0;
       const targetPosition = targetElement.offsetTop - targetOffset;
 
-      
-       if (document.querySelector('.offcanvas').classList.contains('show')) {
-        const offcanvas = new bootstrap.Offcanvas(document.querySelector('#offcanvasNavbar'));
-        offcanvas.hide();
-      }
-
       window.scrollTo({
         top: targetPosition,
         behavior: 'smooth'

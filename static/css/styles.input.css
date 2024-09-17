@@ -12327,6 +12327,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  max-height: 100%;
   filter: brightness(0.4);
   z-index: -10;
 }
@@ -12354,6 +12355,9 @@ button {
 .explore-btn:hover {
   color: #efefef;
   background-color: #e7442e;
+}
+.explore-btn #subscribe-btn {
+  scroll-behavior: smooth;
 }
 
 .genre-btn {
@@ -12612,7 +12616,6 @@ button {
 .countdown .card {
   width: 100%;
   margin: 0;
-  perspective: 1000px;
   position: relative;
   height: 350px;
   perspective: 1000px;
@@ -12687,6 +12690,8 @@ button {
 .countdown .card .back .scrollable, .countdown .card .back .overview,
 .countdown .card .back .review {
   overflow-y: auto;
+  touch-action: auto;
+  -webkit-overflow-scrolling: touch;
 }
 @media (min-width: 576px) {
   .countdown .card .back .scrollable, .countdown .card .back .overview,
@@ -12710,7 +12715,6 @@ button {
 
 p.overview {
   font-size: 0.7rem;
-  overflow: hidden;
   text-overflow: ellipsis;
   color: #efefef;
 }
@@ -12815,10 +12819,10 @@ p.overview {
   }
   .countdown p.overview {
     font-size: 0.7rem;
-    overflow: hidden;
     text-overflow: ellipsis;
     color: #efefef;
     max-height: 100px;
+    overflow-y: auto;
   }
   .countdown .display-5 {
     font-size: 1.8rem;
