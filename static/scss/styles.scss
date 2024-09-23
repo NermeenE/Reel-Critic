@@ -884,6 +884,25 @@ button {
       background: #000;
       transform: rotateY(-180deg);
       z-index: 1;
+
+      .overview {
+        max-height: 100px;
+        overflow-y: auto;
+        touch-action: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(0, 0, 0, 0.2);
+          border-radius: $border-radius;
+        }
+        &::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.1);
+        }
+      }
+
       .title {
         color: $primary;
         font-size: 1rem;
@@ -892,34 +911,6 @@ button {
       .rating {
         color: $primary;
         font-size: 0.8rem;
-      }
-
-      .scrollable {
-        @include media-breakpoint-up(sm) {
-          max-height: 70px;
-        }
-
-        overflow-y: auto;
-        touch-action: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .overview,
-      .review {
-        @extend .scrollable;
-      }
-
-      .scrollable::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      .scrollable::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.2);
-        border-radius: $border-radius;
-      }
-
-      .scrollable::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.1);
       }
     }
   }
@@ -1063,14 +1054,6 @@ p.overview {
   }
 
   .countdown {
-    p.overview {
-      font-size: 0.7rem;
-      text-overflow: ellipsis;
-      color: $secondary;
-      max-height: 100px;
-      overflow-y: auto;
-    }
-
     .display-5 {
       font-size: 1.8rem;
     }
@@ -1249,6 +1232,11 @@ p.overview {
   .countdown {
     .card {
       .back {
+        .overview {
+          max-height: 100px;
+          overflow-y: auto;
+        }
+
         .title {
           color: $primary;
           font-size: 1rem;

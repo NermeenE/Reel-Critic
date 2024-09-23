@@ -21,21 +21,38 @@ function updateNav() {
   });
 }
 
+function setupAutoplayVideo() {
+  const video = document.querySelector("video");
+  if (video) {
+    // Ensure autoplay starts after the page loads
+    video.play().catch(error => {
+      console.error("Autoplay failed:", error);
+    });
+  }
+}
+
 // Smooth scrolling nav link
 function setupNavLinks() {
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .offcanvas .nav-link');
 
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetElement = document.querySelector(this.getAttribute('href'));
-      const targetOffset = parseInt(targetElement.dataset.offset) || 0;
-      const targetPosition = targetElement.offsetTop - targetOffset;
+      const href = this.getAttribute('href');
 
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const targetElement = document.querySelector(href);
+
+        if (targetElement) {
+          const targetOffset = parseInt(targetElement.dataset.offset) || 0;
+          const targetPosition = targetElement.offsetTop - targetOffset;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
     });
   });
 }
@@ -236,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
   setupSearchInput();
   setupSubscriptionForm();
   setupSubscribeButton();
+  setupAutoplayVideo();
   
   
 });
